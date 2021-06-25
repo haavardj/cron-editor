@@ -60,7 +60,6 @@ import { CronOptions } from 'ngx-cron-editor';
 })
 export class MyComponent {
    public cronOptions: CronOptions = {
-       
        defaultTime: "00:00:00",
 
        hideMinutesTab: false,
@@ -70,7 +69,7 @@ export class MyComponent {
        hideMonthlyTab: false,
        hideYearlyTab: false,
        hideAdvancedTab: true,
-       hideSpecificWeekDayTab : false,
+       hideSpecificWeekDayTab: false,
        hideSpecificMonthWeekTab : false,
 
        use24HourTime: true,

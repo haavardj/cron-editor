@@ -1,6 +1,7 @@
 {
   "extends": "../../../tsconfig.packaged.json",
   "compilerOptions": {
+    "skipLibCheck": true,
     "outDir": "../../../dist/apps/demo"
 },
   "files": [

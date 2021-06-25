@@ -17,7 +17,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/apps/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
@@ -31,7 +30,13 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -51,12 +56,12 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -121,9 +126,9 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/ngx-cron-editor/ng-package.prod.json"
-            ,              "tsConfig": "libs/ngx-cron-editor/tsconfig.lib.prod.json"
-}
+              "project": "libs/ngx-cron-editor/ng-package.prod.json",
+              "tsConfig": "libs/ngx-cron-editor/tsconfig.lib.prod.json"
+            }
           },
           "styles": ["libs/ngx-cron-editor/src/cron-editor-theme.scss"]
         },

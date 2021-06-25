@@ -4,12 +4,13 @@
         "directive-selector": [
             true,
             "attribute",
+            "cron",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
-            "lib",
+            "cron",
             "kebab-case"
         ]
     }

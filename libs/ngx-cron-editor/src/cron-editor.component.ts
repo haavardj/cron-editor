@@ -1,8 +1,8 @@
-import {Component, Input, Output, OnInit, OnChanges, SimpleChanges, EventEmitter, forwardRef} from '@angular/core';
-import {CronOptions} from './CronOptions';
-import {Days, MonthWeeks, Months} from './enums';
-import {ControlContainer, ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {ThemePalette} from '@angular/material/core';
+import { Component, Input, Output, OnInit, EventEmitter, forwardRef } from '@angular/core';
+import { CronOptions } from './CronOptions';
+import { Days, MonthWeeks, Months } from './enums';
+import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
 
 
 export const CRON_VALUE_ACCESSOR: any = {
@@ -19,23 +19,12 @@ export const CRON_VALUE_ACCESSOR: any = {
   providers: [CRON_VALUE_ACCESSOR]
 })
 export class CronGenComponent implements OnInit, ControlValueAccessor {
-
   @Input() public backgroundColor: ThemePalette;
   @Input() public color: ThemePalette;
   @Input() public disabled: boolean;
   @Input() public options: CronOptions;
-
-  @Input() get cron(): string {
-    return this.localCron;
-  }
-
-  set cron(value: string) {
-    this.localCron = value;
-    this.onChange(value);
-  }
-
   // the name is an Angular convention, @Input variable name + "Change" suffix
-  // @Output() cronChange = new EventEmitter();
+  @Output() cronChange = new EventEmitter<string>();
 
   public activeTab: string;
   public selectOptions = this.getSelectOptions();
@@ -54,6 +43,15 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
   yearlyForm: FormGroup;
   advancedForm: FormGroup;
 
+  @Input()
+  get cron(): string {
+    return this.localCron;
+  }
+  set cron(value: string) {
+    this.localCron = value;
+    this.onChange(this.localCron);
+    this.cronChange.emit(this.localCron);
+  }
 
   get isCronFlavorQuartz() {
     return this.options.cronFlavor === 'quartz';
@@ -75,15 +73,12 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
     return this.options.cronFlavor === 'quartz' ? '?' : '*';
   }
 
-
-  constructor(private fb: FormBuilder) {
-  }
+  constructor(private fb: FormBuilder) { }
 
   /* Update the cron output to that of the selected tab.
    * The cron output value is updated whenever a form is updated. To make it change in response to tab selection, we simply reset
    * the value of the form that goes into focus. */
   public onTabFocus(idx: number) {
-
     switch (idx) {
       case 0:
         this.minutesForm.setValue(this.minutesForm.value);
@@ -586,10 +581,8 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
   /*
    * ControlValueAccessor
    */
-  onChange = (_: any) => {
-  };
-  onTouched = () => {
-  };
+  onChange = (_: any) => { };
+  onTouched = () => { };
 
   writeValue(obj: string): void {
     this.cron = obj;
@@ -606,5 +599,4 @@ export class CronGenComponent implements OnInit, ControlValueAccessor {
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-
 }

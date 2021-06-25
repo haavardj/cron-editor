@@ -1,5 +1,3 @@
-
-
 .cron-editor-main {
   @include mat-elevation(1);
 }
@@ -31,32 +29,6 @@
 .cron-editor-main .cron-editor-container .inline-block {
   display: inline-block;
 }
-
-.cron-editor-main .cron-editor-container .minutes,
-.cron-editor-main .cron-editor-container .hours,
-.cron-editor-main .cron-editor-container .days,
-.cron-editor-main .cron-editor-container .seconds {
-
-}
-
-.cron-editor-main .cron-editor-container .months {
- }
-
-.cron-editor-main .cron-editor-container .month-days {
-
-}
-
-.cron-editor-main .cron-editor-container .months-small {
- }
-
-.cron-editor-main .cron-editor-container .day-order-in-month {
- }
-
-.cron-editor-main .cron-editor-container .week-days {
- }
-
-.cron-editor-main .cron-editor-container .advanced-cron-editor-input {
- }
 
 .cron-editor-main .cron-editor-container .hour-types {
   width: 70px;
